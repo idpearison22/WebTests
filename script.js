@@ -225,57 +225,19 @@ document.querySelectorAll(".enter-button").forEach(button => {
 
 document.querySelectorAll(".back-button").forEach(button => {
 
-    const player = button.dataset.player;
-
-    let pressTimer = null;
-    let longPressTriggered = false;
-
-
-    function startPress(event) {
+    button.addEventListener("click", () => {
 
         if (gameOver) return;
 
-        longPressTriggered = false;
+        const player = button.dataset.player;
 
-        pressTimer = setTimeout(() => {
-
-            longPressTriggered = true;
-
-            undoLastScore(player);
-
-        }, 700);
-    }
-
-
-    function endPress(event) {
-
-        clearTimeout(pressTimer);
-
-        if (gameOver) return;
-
-        if (!longPressTriggered) {
-
-            handleBack(player);
-        }
-    }
-
-
-    button.addEventListener("pointerdown", startPress);
-
-    button.addEventListener("pointerup", endPress);
-
-    button.addEventListener("pointercancel", () => {
-        clearTimeout(pressTimer);
-    });
-
-    button.addEventListener("pointerleave", () => {
-        clearTimeout(pressTimer);
+        handleBack(player);
     });
 });
 
 
 // ----------------------------
-// NORMAL BACK PRESS
+// BACK / UNDO
 // ----------------------------
 
 function handleBack(player) {
@@ -284,6 +246,7 @@ function handleBack(player) {
 
 
     // SETUP MODE
+    // Delete the last digit entered
     if (!data.setupComplete) {
 
         data.input = data.input.slice(0, -1);
@@ -294,44 +257,37 @@ function handleBack(player) {
     }
 
 
-    // GAME MODE
     if (!gameStarted) return;
 
 
-    data.selectedNumber = null;
+    // If a number is currently selected but
+    // hasn't been submitted yet, cancel it
+    if (data.selectedNumber !== null) {
 
-    clearSelectedButtons(player);
+        data.selectedNumber = null;
 
-    updateDisplay(player);
+        clearSelectedButtons(player);
+
+        updateDisplay(player);
+
+        return;
+    }
+
+
+    // Otherwise undo the most recent submitted score
+    if (data.history.length > 0) {
+
+        const previousScore = data.history.pop();
+
+        data.score = previousScore;
+
+        clearSelectedButtons(player);
+
+        updateDisplay(player);
+
+        flashStatus(player, "Last entry undone");
+    }
 }
-
-
-// ----------------------------
-// LONG PRESS UNDO
-// ----------------------------
-
-function undoLastScore(player) {
-
-    const data = players[player];
-
-    if (!gameStarted) return;
-
-    if (data.history.length === 0) return;
-
-
-    const previousScore = data.history.pop();
-
-    data.score = previousScore;
-
-    data.selectedNumber = null;
-
-    clearSelectedButtons(player);
-
-    updateDisplay(player);
-
-    flashStatus(player, "Last score undone");
-}
-
 
 // ----------------------------
 // BUTTON HIGHLIGHT
