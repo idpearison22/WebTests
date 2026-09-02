@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>Trivia Scorecard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="scorecard">
+
+        <!-- PLAYER 2 -->
+        <section class="player player-top" id="player2">
+
+            <div class="player-content">
+
+                <h2 class="player-name">Player 2</h2>
+
+                <div class="score-display">
+                    <span class="score" id="player2Score">0</span>
+                </div>
+
+                <div class="status" id="player2Status">
+                    Enter starting score
+                </div>
+
+                <div class="keypad">
+
+                    <button class="number-button" data-player="2" data-number="1">1</button>
+                    <button class="number-button" data-player="2" data-number="2">2</button>
+                    <button class="number-button" data-player="2" data-number="3">3</button>
+
+                    <button class="number-button" data-player="2" data-number="4">4</button>
+                    <button class="number-button" data-player="2" data-number="5">5</button>
+                    <button class="number-button" data-player="2" data-number="6">6</button>
+
+                    <button class="number-button" data-player="2" data-number="7">7</button>
+                    <button class="number-button" data-player="2" data-number="8">8</button>
+                    <button class="number-button" data-player="2" data-number="9">9</button>
+
+                    <button class="back-button" data-player="2">Back</button>
+                    <button class="number-button" data-player="2" data-number="0">0</button>
+                    <button class="enter-button" data-player="2">Enter</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CENTER DIVIDER -->
+        <div class="divider"></div>
+
+
+        <!-- PLAYER 1 -->
+        <section class="player player-bottom" id="player1">
+
+            <div class="player-content">
+
+                <h2 class="player-name">Player 1</h2>
+
+                <div class="score-display">
+                    <span class="score" id="player1Score">0</span>
+                </div>
+
+                <div class="status" id="player1Status">
+                    Enter starting score
+                </div>
+
+                <div class="keypad">
+
+                    <button class="number-button" data-player="1" data-number="1">1</button>
+                    <button class="number-button" data-player="1" data-number="2">2</button>
+                    <button class="number-button" data-player="1" data-number="3">3</button>
+
+                    <button class="number-button" data-player="1" data-number="4">4</button>
+                    <button class="number-button" data-player="1" data-number="5">5</button>
+                    <button class="number-button" data-player="1" data-number="6">6</button>
+
+                    <button class="number-button" data-player="1" data-number="7">7</button>
+                    <button class="number-button" data-player="1" data-number="8">8</button>
+                    <button class="number-button" data-player="1" data-number="9">9</button>
+
+                    <button class="back-button" data-player="1">Back</button>
+                    <button class="number-button" data-player="1" data-number="0">0</button>
+                    <button class="enter-button" data-player="1">Enter</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- WINNER SCREEN -->
+    <div class="winner-screen hidden" id="winnerScreen">
+
+        <div class="winner-half winner-top">
+            <h1 id="winnerTopText">Player 1 Wins!</h1>
+        </div>
+
+        <button id="newGameButton">New Game</button>
+
+        <div class="winner-half winner-bottom">
+            <h1 id="winnerBottomText">Player 1 Wins!</h1>
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
